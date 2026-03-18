@@ -1,22 +1,26 @@
-import java.io.*;
-import java.util.*;
+// Import required libraries
+import java.io.*;   // Gives file writing tools : BufferedWriter, FileWriter
+import java.util.*;  // Gives Random, ArrayList, Scanner
 
-public class Main {
+public class Main { //public -> Accessible everywhere , Main ->File name (must match with the file it's in)
 
-    static Random rand = new Random();
+    static Random rand = new Random(); // Creates a number generator
 
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+    // public->public, static->belongs to class (no object needed), void->returns nothing, main-> special name Java checks
+    // String[] args -> command-line inputs (we are not using it here)
+    public static void main(String[] args) { //Java starts running from here, "When we preess run -> Java enters here"
+    
+        Scanner sc = new Scanner(System.in); //Create an object that reads user input from keyboard
 
-        System.out.print("Enter number of questions: ");
-        int n = sc.nextInt();
+        System.out.print("Enter number of questions: "); //prints this line 
+        int n = sc.nextInt(); // Waits user to type number
 
         String studentID = "2456346";
 
-        try {
-            BufferedWriter writer = new BufferedWriter(new FileWriter("result.txt"));
+        try {  //Try to do this, if sth fails catch it.(Used for file operations)
+            BufferedWriter writer = new BufferedWriter(new FileWriter("result.txt")); //Creates result.txt, waits to write into it
 
-            writer.write(studentID + "\n");
+            writer.write(studentID + "\n"); //First line of file
 
             for (int i = 0; i < n; i++) {
 
@@ -24,7 +28,7 @@ public class Main {
                 int numOperators = rand.nextInt(3) + 3;
                 int numNumbers = numOperators + 1;
 
-                ArrayList<Double> numbers = new ArrayList<>();
+                ArrayList<Double> numbers = new ArrayList<>();  //Empty containers
                 ArrayList<String> operators = new ArrayList<>();
 
                 String[] ops = {"+", "-", "*", "/"};
@@ -36,7 +40,7 @@ public class Main {
 
                 // Generate operators
                 for (int j = 0; j < numOperators; j++) {
-                    operators.add(ops[rand.nextInt(ops.length)]);
+                    operators.add(ops[rand.nextInt(ops.length)]); // Selects random operator
                 }
 
                 // Build expression string
@@ -107,7 +111,6 @@ public class Main {
             numbers.set(i, res);
             numbers.remove(i + 1);
             operators.remove(i);
-
             i--;
         }
 
