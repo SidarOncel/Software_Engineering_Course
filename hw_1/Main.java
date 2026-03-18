@@ -1,11 +1,13 @@
+package hw_1;
 // Import required libraries
 import java.io.*;   // Gives file writing tools : BufferedWriter, FileWriter
 import java.util.*;  // Gives Random, ArrayList, Scanner
+import javax.swing.text.Utilities;
 
 public class Main { //public -> Accessible everywhere , Main ->File name (must match with the file it's in)
 
     static Random rand = new Random(); // Creates a number generator
-
+    
     // public->public, static->belongs to class (no object needed), void->returns nothing, main-> special name Java checks
     // String[] args -> command-line inputs (we are not using it here)
     public static void main(String[] args) { //Java starts running from here, "When we preess run -> Java enters here"
@@ -18,10 +20,7 @@ public class Main { //public -> Accessible everywhere , Main ->File name (must m
         String studentID = "2456346";
 
         try {  //Try to do this, if sth fails catch it.(Used for file operations)
-            BufferedWriter writer = new BufferedWriter(new FileWriter("result.txt")); //Creates result.txt, waits to write into it
-
-            writer.write(studentID + "\n"); //First line of file
-
+            
             for (int i = 0; i < n; i++) {
 
                 // Generate operators count (3–5)
