@@ -1,7 +1,4 @@
-package Duo_hw;
-
 import java.util.*;
-
 public class mathQuiz {
 
     static Random rand = new Random();
@@ -13,8 +10,8 @@ public class mathQuiz {
         String studentID = "2456346";
         String studentID_2 = "2456347";
 
-        System.out.println(studentID + "\n");
-        System.out.println(studentID_2 + "\n");
+        System.out.println(studentID);
+        System.out.println(studentID_2);
 
         int count = 0, right = 0;
         long start = 0, finish = 0, time = 0;
@@ -47,7 +44,7 @@ public class mathQuiz {
                 expr += " " + operators.get(j) + " " + numbers.get(j + 1);
             }
 
-            // 🔹 Evaluate (IMPORTANT: use copies)
+            // 🔹 Evaluate using copies (IMPORTANT)
             double result = evaluate(new ArrayList<>(numbers), new ArrayList<>(operators));
 
             // 🔹 Ask user
@@ -60,7 +57,7 @@ public class mathQuiz {
 
             count++;
 
-            // 🔹 Convert input safely
+            // 🔹 Validate input
             double userAnswer;
             try {
                 userAnswer = Double.parseDouble(input);
@@ -69,18 +66,18 @@ public class mathQuiz {
                 continue;
             }
 
-            // 🔹 Compare answers (with tolerance)
-            if (Math.abs(result - userAnswer) < 0.0001) {
+            //  Compare with tolerance
+            if (Math.abs(result - userAnswer) < 0.01) {
                 right++;
                 System.out.println("Correct!\n");
             } else {
-                System.out.println("Wrong input. Correct answer is: " + result + "\n");
+                System.out.println("Wrong answer. Correct answer is: " + result + "\n");
             }
 
-            // 🔹 Time tracking
+            //  Track time
             time += (finish - start);
 
-            // 🔹 Every 10 questions → ask to continue
+            //  Ask every 10 questions
             if (count % 10 == 0) {
                 System.out.print("Do you want to continue? (c = continue, x = exit): ");
                 String choice = sc.nextLine().trim().toLowerCase();
@@ -91,7 +88,7 @@ public class mathQuiz {
             }
         }
 
-        // 🔹 Final results
+        //  Final results
         System.out.println("\n===== RESULT =====");
         System.out.println("Total questions: " + count);
         System.out.println("Correct answers: " + right);
@@ -104,10 +101,10 @@ public class mathQuiz {
         sc.close();
     }
 
-    // 🔹 Evaluation with precedence
+    // Evaluate expression with precedence
     public static double evaluate(ArrayList<Double> numbers, ArrayList<String> operators) {
 
-        // First: * and /
+        // Handle * and /
         for (int i = 0; i < operators.size(); i++) {
 
             if (operators.get(i).equals("*") || operators.get(i).equals("/")) {
@@ -132,7 +129,7 @@ public class mathQuiz {
             }
         }
 
-        // Then: + and -
+        // Handle + and -
         for (int i = 0; i < operators.size(); i++) {
 
             double a = numbers.get(i);
